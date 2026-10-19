@@ -1,0 +1,17 @@
+project:
+  uuid: d8360b14-2124-4a00-8319-32bbc6b1a6c3
+  slug: lacajaambar-beekeeper
+  node_id: 69d5b33accb3
+  build_id: 79ce9504-a04d-55c4-b13e-026a029fd222
+mission_type_activations:
+- software-dev
+- documentation
+- research
+- plan
+vcs:
+  type: git
+agents:
+  available:
+  - codex
+  auto_commit: true
+  lint_on_edit: false

@@ -10,7 +10,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "BeeKeeper — Gestión apícola",
-  description: "Apicultura de La Caja Ámbar",
+  description: "Apicultura de LaCajaAmbar",
 };
 
 export default function RootLayout({

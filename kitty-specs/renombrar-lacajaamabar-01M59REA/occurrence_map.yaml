@@ -1,0 +1,36 @@
+target:
+  term: "La Caja Ámbar"
+  replacement: "LaCajaAmbar"
+  scope: "all_files"
+
+code_symbols:
+  action: rename
+  reason: "Internal brand references in source code should use the unified brand name."
+
+import_paths:
+  action: rename
+  reason: "Import paths referencing the brand should track the symbol rename."
+
+filesystem_paths:
+  action: manual_review
+  reason: "On-disk paths may be referenced externally or in configuration; review case by case."
+
+serialized_keys:
+  action: do_not_change
+  reason: "JSON/API keys and config keys are contracts; renaming could break consumers."
+
+cli_commands:
+  action: do_not_change
+  reason: "CLI command names are part of the public interface; need a deprecation cycle before changing."
+
+user_facing_strings:
+  action: rename_if_user_visible
+  reason: "Rename in UI labels, headings, docs, and any text shown to users; preserve internal labels."
+
+tests_fixtures:
+  action: rename
+  reason: "Test fixtures should reflect the new brand terminology."
+
+logs_telemetry:
+  action: do_not_change
+  reason: "Log messages and telemetry labels are consumed by dashboards and alerts; changing them breaks monitoring."

@@ -35,12 +35,12 @@ export default function WelcomePage() {
         <div className="mx-auto max-w-6xl flex items-center gap-3">
           <Image
             src="/assets/logo-lacajaambar.png"
-            alt="La Caja Ámbar"
+            alt="LaCajaAmbar"
             width={40}
             height={40}
             className="h-10 w-auto"
           />
-          <span className="font-extrabold tracking-tight text-cream">La Caja Ámbar</span>
+          <span className="font-extrabold tracking-tight text-cream">LaCajaAmbar</span>
         </div>
       </header>
 
@@ -50,7 +50,7 @@ export default function WelcomePage() {
             <div className="flex flex-col items-center gap-2 mb-8">
               <Image
                 src="/assets/logo-lacajaambar.png"
-                alt="La Caja Ámbar"
+                alt="LaCajaAmbar"
                 width={96}
                 height={82}
                 className="h-20 w-auto"

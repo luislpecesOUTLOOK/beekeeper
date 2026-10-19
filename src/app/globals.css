@@ -26,6 +26,7 @@
 body {
   background:
     radial-gradient(55% 55% at 78% 45%, rgba(242, 168, 29, 0.16), rgba(242, 168, 29, 0)) top / 100% max(860px, 100svh) no-repeat,
+    url('/comb.svg') 0 0 / 61.6px 106.7px,
     var(--ink);
   color: var(--cream);
   font-family: var(--font-display), system-ui, sans-serif;

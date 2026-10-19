@@ -38,7 +38,7 @@ export default function ApiaryDetailPage() {
             <span className="font-medium text-cream">Volver</span>
           </Link>
           <div className="flex items-center gap-3">
-            <span className="font-extrabold tracking-tight text-cream">La Caja Ámbar</span>
+            <span className="font-extrabold tracking-tight text-cream">LaCajaAmbar</span>
           </div>
         </div>
       </header>

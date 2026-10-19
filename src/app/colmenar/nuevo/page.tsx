@@ -83,7 +83,7 @@ export default function NewColmenarPage() {
         <header className="border-b border-cream/10 bg-ink/85 backdrop-blur px-[5%] py-4">
           <div className="mx-auto max-w-6xl flex items-center gap-3">
             <Link href="/colmenares" className="flex items-center gap-3">
-              <span className="font-extrabold tracking-tight text-cream">La Caja Ámbar</span>
+              <span className="font-extrabold tracking-tight text-cream">LaCajaAmbar</span>
             </Link>
           </div>
         </header>
@@ -152,7 +152,7 @@ export default function NewColmenarPage() {
       <header className="border-b border-cream/10 bg-ink/85 backdrop-blur px-[5%] py-4">
         <div className="mx-auto max-w-6xl flex items-center gap-3">
           <Link href="/colmenares" className="flex items-center gap-3">
-            <span className="font-extrabold tracking-tight text-cream">La Caja Ámbar</span>
+            <span className="font-extrabold tracking-tight text-cream">LaCajaAmbar</span>
           </Link>
         </div>
       </header>

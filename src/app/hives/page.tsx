@@ -26,7 +26,7 @@ export default function HivesPage() {
       <header className="border-b border-cream/10 bg-ink/85 backdrop-blur px-[5%] py-4">
         <div className="mx-auto max-w-6xl flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3">
-            <span className="font-extrabold tracking-tight text-cream">La Caja Ámbar</span>
+            <span className="font-extrabold tracking-tight text-cream">LaCajaAmbar</span>
           </Link>
           <Link href="/colmenares" className="text-sm font-medium text-muted hover:text-amber transition-colors">
             Colmenares
