@@ -1,0 +1,16 @@
+{
+  "coordination_branch": "kitty/mission-renombrar-lacajaamabar-01M59REA",
+  "created_at": "2026-10-19T09:38:51.504462+00:00",
+  "flattened": false,
+  "friendly_name": "Renombrar La Caja Ámbar a LaCajaAmbar y fondo de landing",
+  "mission_id": "01M59REATDC2ZMW6V1QTPKMSVZ",
+  "mission_number": null,
+  "mission_slug": "renombrar-lacajaamabar-01M59REA",
+  "mission_type": "software-dev",
+  "pr_bound": true,
+  "purpose_context": "La aplicación BeeKeeper usa el nombre 'La Caja Ámbar' con espacios y acento. Se necesita unificar a 'LaCajaAmbar' y aplicar el fondo del landing de C:\\lacajaambar-landing para que los textos como 'Tus colmenares' destaquen mejor.",
+  "purpose_tldr": "Renombrar todas las referencias de 'La Caja Ámbar' a 'LaCajaAmbar' y aplicar el fondo de pantalla del landing para mejorar legibilidad de textos",
+  "slug": "renombrar-lacajaamabar-01M59REA",
+  "target_branch": "feat/renombrar-lacajaamabar",
+  "topology": "coord"
+}
