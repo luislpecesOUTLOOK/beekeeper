@@ -88,7 +88,7 @@ export default function NewColmenarPage() {
           </div>
         </header>
 
-        <main className="flex-1 px-[5%] py-10 sm:py-16 max-w-md mx-auto">
+        <main className="flex-1 px-[5%] py-10 sm:py-16 max-w-md mx-auto bg-[#121212] bg-[url('/comb.svg')] bg-repeat bg-[length:80px_140px]">
           <Card padded className="p-8 sm:p-12 border border-cream/10">
             <div className="flex flex-col items-center gap-4 mb-8">
               <div className="p-3 bg-amber/10 rounded-2xl border border-amber/20">
@@ -157,7 +157,7 @@ export default function NewColmenarPage() {
         </div>
       </header>
 
-      <main className="flex-1 px-[5%] py-10 sm:py-16 max-w-md mx-auto">
+      <main className="flex-1 px-[5%] py-10 sm:py-16 max-w-md mx-auto bg-[#121212] bg-[url('/comb.svg')] bg-repeat bg-[length:80px_140px]">
         <div className="flex flex-col gap-4">
           <div>
             <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-amber">

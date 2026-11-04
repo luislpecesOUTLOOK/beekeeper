@@ -34,7 +34,7 @@ export default function HivesPage() {
         </div>
       </header>
 
-      <main className="flex-1 px-[5%] py-10 sm:py-16 max-w-6xl mx-auto">
+      <main className="flex-1 px-[5%] py-10 sm:py-16 max-w-6xl mx-auto bg-[#121212] bg-[url('/comb.svg')] bg-repeat bg-[length:80px_140px]">
         <div className="flex flex-col gap-4">
           <div>
             <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-amber">Colmenas</p>

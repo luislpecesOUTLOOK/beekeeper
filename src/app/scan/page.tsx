@@ -20,7 +20,7 @@ export default function ScanPage() {
   };
 
   return (
-    <div className="max-w-[520px] mx-auto py-6 px-4 space-y-4 safe-bottom">
+    <div className="max-w-[520px] mx-auto py-6 px-4 space-y-4 safe-bottom bg-[#121212] bg-[url('/comb.svg')] bg-repeat bg-[length:80px_140px] min-h-screen flex flex-col">
       <div className="flex flex-col gap-2">
         <h1 className="text-xl font-bold text-charcoal">Escanear QR</h1>
         <p className="text-sm text-charcoal/60">

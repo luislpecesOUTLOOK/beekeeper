@@ -43,7 +43,7 @@ export default function ApiaryDetailPage() {
         </div>
       </header>
 
-      <main className="flex-1 px-[5%] py-8 sm:py-12 max-w-6xl mx-auto">
+      <main className="flex-1 px-[5%] py-8 sm:py-12 max-w-6xl mx-auto bg-[#121212] bg-[url('/comb.svg')] bg-repeat bg-[length:80px_140px]">
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
           <div className="flex flex-col gap-1">
             <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-amber">

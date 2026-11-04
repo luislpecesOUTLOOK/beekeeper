@@ -44,7 +44,7 @@ export default function WelcomePage() {
         </div>
       </header>
 
-      <main className="flex-1 flex items-center justify-center px-[5%] py-20">
+      <main className="flex-1 flex items-center justify-center px-[5%] py-20 bg-[#121212] bg-[url('/comb.svg')] bg-repeat bg-[length:80px_140px]">
         <div className="mx-auto max-w-md">
           <Card padded className="p-8 sm:p-12 border border-cream/10">
             <div className="flex flex-col items-center gap-2 mb-8">
