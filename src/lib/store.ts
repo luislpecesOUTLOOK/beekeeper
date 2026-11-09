@@ -36,11 +36,16 @@ export interface HiveInventory {
   feederType: FeederType;
 }
 
+export type PropolisLevel = "none" | "low" | "medium" | "high";
+
 export interface HiveStatusMetrics {
   broodFrames: number;
   pollenFrames: number;
   honeyFrames: number;
   beeCoveragePercent: number;
+  /** Cuadros equivalentes cubiertos de abejas. Se deriva del porcentaje en datos antiguos. */
+  beeFrames?: number;
+  propolisLevel?: PropolisLevel;
   queenSpotted: boolean;
   temperament: Temperament;
 }
@@ -98,6 +103,8 @@ export const DEFAULT_METRICS: HiveStatusMetrics = {
   pollenFrames: 0,
   honeyFrames: 0,
   beeCoveragePercent: 0,
+  beeFrames: 0,
+  propolisLevel: "none",
   queenSpotted: false,
   temperament: "Normal",
 };
