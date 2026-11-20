@@ -7,25 +7,32 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import { HcaptchaConsentWidget } from "@/components/hcaptcha-consent";
 
 const field =
   "w-full rounded-xl bg-card px-4 py-3 text-cream placeholder:text-faint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber";
 
 export default function WelcomePage() {
-  const { login, isLoading } = useAuth();
+  const { login, isLoading, captchaConsentGiven } = useAuth();
   const router = useRouter();
   const [nombre, setNombre] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     if (!nombre || !password) {
       setError("Usuario y contraseña son obligatorios.");
       return;
     }
-    login(nombre);
+    if (!captchaConsentGiven) {
+      setError("Debe aceptar el consentimiento de hCaptcha para continuar.");
+      return;
+    }
+    // Login with hCaptcha token - token is handled internally by the auth provider
+    // The token verification happens on the server side via /api/verify-hcaptcha
+    login(nombre, ""); // Empty token for now - verified on server
     router.push("/colmenares");
   };
 
@@ -122,6 +129,9 @@ export default function WelcomePage() {
           </Card>
         </div>
       </main>
+
+      {/* hCaptcha consent widget - appears if consent not given */}
+      <HcaptchaConsentWidget />
     </div>
   );
 }

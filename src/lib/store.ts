@@ -109,10 +109,47 @@ export const DEFAULT_METRICS: HiveStatusMetrics = {
   temperament: "Normal",
 };
 
+// GDPR consent storage key
+const GDPR_CONSENT_KEY = "beekeeper:hcaptcha_consent";
+
+const hasGDPRConsent = (): boolean => {
+  if (typeof window === "undefined") return false;
+  try {
+    const raw = localStorage.getItem(GDPR_CONSENT_KEY);
+    return raw === "true";
+  } catch {
+    return false;
+  }
+};
+
+const setGDPRConsent = (value: boolean) => {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(GDPR_CONSENT_KEY, value ? "true" : "false");
+  } catch {
+    // Ignore storage errors in private/incognito modes
+  }
+};
+
+// Supabase configuration
+const supabaseUrl = "https://your-project.supabase.co";
+const supabaseAnonKey = "your-anon-key";
+
+// Initialize Supabase client dynamically
+let supabase: any = null;
+try {
+  supabase = require("supabase").createClient(supabaseUrl, supabaseAnonKey);
+} catch {
+  supabase = null;
+}
+
+// Storage prefix for GDPR-aware data
+const GDPR_PREFIX = "beekeeper:supa:";
+
 export const STORAGE_KEYS = {
-  APIARIES: "beekeeper:apiaries",
-  HIVES: "beekeeper:hives",
-  LOGS: "beekeeper:logs",
+  APIARIES: GDPR_PREFIX + "apiaries",
+  HIVES: GDPR_PREFIX + "hives",
+  LOGS: GDPR_PREFIX + "logs",
 } as const;
 
 export const SEED_DATA: SeedData = {
@@ -311,7 +348,7 @@ export class BeekeeperStore {
     this.load();
   }
 
-  private load(): void {
+  private async load(): Promise<void> {
     try {
       if (typeof window === "undefined") {
         const seed = loadSeed();
@@ -321,6 +358,47 @@ export class BeekeeperStore {
         return;
       }
 
+      // Check GDPR consent before data transfer
+      const gdprConsent = hasGDPRConsent();
+
+      // Try Supabase first if consent given and client available
+      if (gdprConsent && supabase) {
+        try {
+          // Load apiaries from Supabase
+          const { data: supaApis, error: apiError } = await supabase
+            .from("apiaries")
+            .select("*")
+            .order("name", { ascending: true });
+
+          if (apiError) throw apiError;
+          this.apiaries = supaApis || [];
+
+          // Load hives from Supabase
+          const { data: supaHives, error: hiveError } = await supabase
+            .from("hives")
+            .select("*")
+            .order("code", { ascending: true });
+
+          if (hiveError) throw hiveError;
+          this.hives = supaHives || [];
+
+          // Load logs from Supabase
+          const { data: supaLogs, error: logError } = await supabase
+            .from("maintenance_logs")
+            .select("*")
+            .order("date", { ascending: false });
+
+          if (logError) throw logError;
+          this.logs = supaLogs || [];
+
+          return;
+        } catch (supaError) {
+          console.warn("Supabase load failed, falling back to localStorage:", supaError);
+          // Fall through to localStorage
+        }
+      }
+
+      // Fall back to localStorage
       const rawA = localStorage.getItem(STORAGE_KEYS.APIARIES);
       const rawH = localStorage.getItem(STORAGE_KEYS.HIVES);
       const rawL = localStorage.getItem(STORAGE_KEYS.LOGS);
@@ -344,11 +422,37 @@ export class BeekeeperStore {
     }
   }
 
-  private persist(): void {
+  private async persist(): Promise<void> {
     if (typeof window === "undefined") return;
+
+    // Always persist to localStorage as fallback
     localStorage.setItem(STORAGE_KEYS.APIARIES, JSON.stringify(this.apiaries));
     localStorage.setItem(STORAGE_KEYS.HIVES, JSON.stringify(this.hives));
     localStorage.setItem(STORAGE_KEYS.LOGS, JSON.stringify(this.logs));
+
+    // If GDPR consent given, also persist to Supabase
+    if (hasGDPRConsent() && supabase) {
+      try {
+        // Upsert apiaries to Supabase
+        await supabase.from("apiaries").upsert(this.apiaries, {
+          onConflict: "id",
+        });
+
+        // Upsert hives to Supabase
+        await supabase.from("hives").upsert(this.hives, {
+          onConflict: "id",
+        });
+
+        // Upsert logs to Supabase
+        await supabase.from("maintenance_logs").upsert(this.logs, {
+          onConflict: "id",
+        });
+      } catch (supaError) {
+        console.warn("Supabase persist failed:", supaError);
+        // LocalStorage already has the data, continue
+      }
+    }
+
     this.listeners.forEach((fn) => fn());
   }
 
