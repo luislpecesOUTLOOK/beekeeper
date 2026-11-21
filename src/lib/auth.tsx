@@ -9,6 +9,7 @@ type AuthContextType = {
   logout: () => void;
   isLoading: boolean;
   captchaConsentGiven: boolean;
+  setCaptchaConsentGiven: (value: boolean) => void;
 };
 
 const GDPR_CONSENT_KEY = "beekeeper:hcaptcha_consent";
@@ -84,7 +85,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoading, captchaConsentGiven }}>
+    <AuthContext.Provider value={{ user, login, logout, isLoading, captchaConsentGiven, setCaptchaConsentGiven }}>
       {children}
     </AuthContext.Provider>
   );
